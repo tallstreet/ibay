@@ -2,11 +2,11 @@ import { createSelector } from 'reselect';
 
 export const signInSelector = createSelector(
   [
-    state => state.postInvoice,
+    state => state.signin
   ],
-  (postInvoice) => {
+  (signin) => {
     return {
-      invoice: postInvoice.get('invoice')
+      error: signin.get('error')
     };
   }
 );

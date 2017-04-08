@@ -1,7 +1,7 @@
 // @flow
 import { fork, select, take, put } from 'redux-saga/effects';
 import { saga, INITIAL, ERROR } from 'redux-tower';
-import { SignIn, Timeline, Loading, PostInvoice } from '../pages';
+import { SignIn, Timeline, Loading, PostInvoice, Auction } from '../pages';
 import { SUCCESS_GET_USER } from '../actions';
 import { requestSignOut } from '../pages/signout/signout-actions';
 import { createBrowserHistory as createHistory } from 'redux-tower';
@@ -19,8 +19,11 @@ const routes = {
   '/login': function* logout() {
     yield SignIn;
   },
-  '/post_invoice': function* home() {
+  '/post_invoice': function* post() {
     yield PostInvoice;
+  },
+  '/auction/:id': function* auction({ params: { id } }) {
+    yield Auction;
   },
   '/': function* home() {
     if (yield select(isLoggedIn)) {
