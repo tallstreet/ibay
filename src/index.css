@@ -1,0 +1,37 @@
+@import "~@blueprintjs/core/dist/blueprint.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-in, .loading {
+  margin-top: 20em;
+}
+
+.nav {
+  /* 12em is the width of the columns */
+  flex: 0 0 12em;
+  /* put the nav on the left */
+  order: -1;
+}
