@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/header';
 import { Button } from "@blueprintjs/core";
+import TimeAgo from 'react-timeago'
 
 function showBids(auction) {
   return (
@@ -8,10 +9,13 @@ function showBids(auction) {
     <h3>Bids</h3>
     <table>
       <thead>
-        <th>Bid</th>
-        <th>User</th>
-        <th>Time</th>
+        <tr>
+          <th>Bid</th>
+          <th>User</th>
+          <th>Time</th>
+        </tr>
       </thead>
+      <tbody>
     {
       Object.keys(auction.bids).sort((a, b) => auction.bids[a].bidTime - auction.bids[b].bidTime).map((key) => {
         const bid = auction.bids[key];
@@ -19,7 +23,7 @@ function showBids(auction) {
         newDate.setTime(bid.bidTime);
         const dateString = newDate.toUTCString();
         return (
-          <tr>
+          <tr key={bid.id}>
             <td>{bid.bid}</td>
             <td>{bid.user}</td>
             <td>{dateString}</td>
@@ -27,7 +31,20 @@ function showBids(auction) {
         );
       })
     }
+    </tbody>
     </table>
+    </div>
+  )
+}
+
+function showForm(auction, handleAddBid, handleChangeBid) {
+  return (
+    <div>
+      <h2>Do you want to purchase invoice valued at £{ auction.amount }?</h2>
+      <div className="pt-input-group pt-large">
+        <input type="number" className="pt-input" placeholder="Bid Amount" onChange={handleChangeBid} />
+      </div>
+      <Button onClick={handleAddBid}  className="pt-button pt-large pt-intent-primary" iconName="pt-icon-log-in">Bid</Button>
     </div>
   )
 }
@@ -41,13 +58,10 @@ export default function Auction({ auction, handleAddBid, handleChangeBid }) {
         <main className="content">
           <div className="pt-control-group pt-vertical sign-in">
             <h1>Auction for Invoice</h1>
-            <h2>Do you want to purchase invoice valued at £{ auction.amount }?</h2>
+            Auction Ends: <TimeAgo date={new Date(auction.endDate).toUTCString()} />
             <a href={auction.invoice} target="_blank">Download Invoice</a>
             { auction.bids && showBids(auction) }
-            <div className="pt-input-group pt-large">
-              <input type="number" className="pt-input" placeholder="Bid Amount" onChange={handleChangeBid} />
-            </div>
-            <Button onClick={handleAddBid}  className="pt-button pt-large pt-intent-primary" iconName="pt-icon-log-in">Bid</Button>
+            { auction.user !== window.firebase.auth().currentUser.uid && showForm(auction, handleAddBid, handleChangeBid) }
           </div>
         </main>
       </div>

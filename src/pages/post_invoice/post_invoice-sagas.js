@@ -22,7 +22,7 @@ function addInvoice(file, amount, minBid, reserve, endDate) {
         invoice: upload.snapshot.downloadURL,
         minBid,
         reserve, 
-        endDate,
+        endDate: endDate.getTime(),
         auctionStartTime: window.firebase.database.ServerValue.TIMESTAMP,
         user: window.firebase.auth().currentUser.uid
       };
