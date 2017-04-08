@@ -12,6 +12,24 @@ export default function Auction({ auction, handleAddBid, handleChangeBid }) {
             <h1>Auction for Invoice</h1>
             <h2>Do you want to purchase invoice valued at £{ auction.amount }?</h2>
             <a href={auction.invoice} target="_blank">Download Invoice</a>
+            <h3>Bids</h3>
+            <table>
+              <thead>
+                <th>Bid</th>
+                <th>User</th>
+              </thead>
+            {
+              Object.keys(auction.bids).map((key) => {
+                const bid = auction.bids[key];
+                return (
+                  <tr>
+                    <td>{bid.bid}</td>
+                    <td>{bid.user}</td>
+                  </tr>
+                );
+              })
+            }
+            </table>
             <div className="pt-input-group pt-large">
               <input type="number" className="pt-input" placeholder="Bid Amount" onChange={handleChangeBid} />
             </div>
