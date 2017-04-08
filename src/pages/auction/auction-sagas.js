@@ -22,6 +22,7 @@ function addBid(bid, auctionId) {
   const bidRef = window.firebase.database().ref(`invoices/${auctionId}/bids`).push();
   return bidRef.set({
     user: window.firebase.auth().currentUser.uid,
+    bidTime: window.firebase.database.ServerValue.TIMESTAMP,
     bid
   });
 }

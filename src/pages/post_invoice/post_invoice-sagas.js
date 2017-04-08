@@ -20,6 +20,7 @@ function addInvoice(file, amount) {
       const result = {
         amount,
         invoice: upload.snapshot.downloadURL,
+        auctionStartTime: window.firebase.database.ServerValue.TIMESTAMP,
         user: window.firebase.auth().currentUser.uid
       };
       const key = window.firebase.database().ref('invoices').push(result).key;

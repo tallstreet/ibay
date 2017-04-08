@@ -17,14 +17,19 @@ export default function Auction({ auction, handleAddBid, handleChangeBid }) {
               <thead>
                 <th>Bid</th>
                 <th>User</th>
+                <th>Time</th>
               </thead>
             {
-              Object.keys(auction.bids).map((key) => {
+              Object.keys(auction.bids).sort((a, b) => auction.bids[a].bidTime - auction.bids[b].bidTime).map((key) => {
                 const bid = auction.bids[key];
+                const newDate = new Date();
+                newDate.setTime(bid.bidTime);
+                const dateString = newDate.toUTCString();
                 return (
                   <tr>
                     <td>{bid.bid}</td>
                     <td>{bid.user}</td>
+                    <td>{dateString}</td>
                   </tr>
                 );
               })
