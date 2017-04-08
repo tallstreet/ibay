@@ -16,7 +16,10 @@ class PostInvoiceContainer extends Component {
 
   state: {
     file: File,
-    amount: string
+    amount: string,
+    minBid: string,
+    reserve: string,
+    endDate: number
   };
 
   componentWillReceiveProps(nextProps) {
@@ -26,7 +29,7 @@ class PostInvoiceContainer extends Component {
   }
 
   handleAddInvoice() {
-    this.props.addInvoice({file: this.state.file, amount: this.state.amount});
+    this.props.addInvoice({file: this.state.file, amount: this.state.amount, minBid: this.state.minBid, reserve: this.state.reserve, endDate: this.state.endDate });
   }
 
   handleChangeFile(event) {
@@ -37,12 +40,28 @@ class PostInvoiceContainer extends Component {
     this.setState({amount: event.target.value});
   }
 
+  handleChangeMinBid(event) {
+    this.setState({minBid: event.target.value});
+  }
+
+  handleChangeReserve(event) {
+    this.setState({reserve: event.target.value});
+  }
+
+  handleDateChange(endDate) {
+    this.setState({endDate});
+  }
+
   render() {
     return (
       <PostInvoice
         handleAddInvoice={this.handleAddInvoice.bind(this)}
         handleChangeFile={this.handleChangeFile.bind(this)}
         handleChangeAmount={this.handleChangeAmount.bind(this)}
+        handleChangeMinBid={this.handleChangeMinBid.bind(this)}
+        handleChangeReserve={this.handleChangeReserve.bind(this)}
+        handleDateChange={this.handleDateChange.bind(this)}
+        date={this.state && this.state.endDate}
       />
     );
   }

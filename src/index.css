@@ -1,4 +1,5 @@
 @import "~@blueprintjs/core/dist/blueprint.css";
+@import "~@blueprintjs/datetime/dist/blueprint-datetime.css";
 
 body {
   margin: 0;
@@ -27,6 +28,10 @@ body {
 
 .sign-in, .loading {
   margin-top: 20em;
+}
+
+.post-invoice {
+  margin-top: 5em;
 }
 
 .nav {

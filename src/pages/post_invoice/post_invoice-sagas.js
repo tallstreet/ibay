@@ -5,7 +5,7 @@ import {
 } from './post_invoice-actions';
 import type { IOEffect } from 'redux-saga/effects';
 
-function addInvoice(file, amount) {
+function addInvoice(file, amount, minBid, reserve, endDate) {
   // Create the file metadata
   return new Promise((resolve, reject) => {
     const metadata = {
@@ -20,6 +20,9 @@ function addInvoice(file, amount) {
       const result = {
         amount,
         invoice: upload.snapshot.downloadURL,
+        minBid,
+        reserve, 
+        endDate,
         auctionStartTime: window.firebase.database.ServerValue.TIMESTAMP,
         user: window.firebase.auth().currentUser.uid
       };
@@ -32,7 +35,7 @@ function addInvoice(file, amount) {
 function* handleAddInvoice(): Generator<IOEffect,void,*> {
   while (true) {
     const action = yield take(REQUEST_POST_INVOICE);
-    const invoice = yield call(addInvoice, action.payload.file, action.payload.amount);
+    const invoice = yield call(addInvoice, action.payload.file, action.payload.amount, action.payload.minBid, action.payload.reserve, action.payload.endDate);
     if (invoice) {
       yield put(successAddInvoice({ invoice }));
     }
