@@ -6,7 +6,7 @@ export const auctionSelector = createSelector(
   ],
   (auction) => {
     return {
-      auction: auction.get('auction')
+      auction: auction.get('auction').toJS()
     };
   }
 );
