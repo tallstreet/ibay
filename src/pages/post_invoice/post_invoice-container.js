@@ -2,12 +2,12 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as SignInActionCreators from './post_invoice-actions';
+import * as ActionCreators from './post_invoice-actions';
 import PostInvoice from './post_invoice-view';
 import { actions } from 'redux-tower';
-import { signInSelector } from './post_invoice-selectors';
+import { postInvoiceSelector } from './post_invoice-selectors';
 
-class SignInContainer extends Component {
+class PostInvoiceContainer extends Component {
   props: {
     push: (string) => void,
     invoice: string,
@@ -50,9 +50,9 @@ class SignInContainer extends Component {
 
 
 export default connect(
-  signInSelector,
+  postInvoiceSelector,
   dispatch => bindActionCreators({
-    ...SignInActionCreators,
+    ...ActionCreators,
     push: actions.push
   }, dispatch)
-)(SignInContainer);
+)(PostInvoiceContainer);

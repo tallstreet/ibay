@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const signInSelector = createSelector(
+export const postInvoiceSelector = createSelector(
   [
     state => state.postInvoice,
   ],

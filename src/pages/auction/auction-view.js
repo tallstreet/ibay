@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/header';
 import { Button } from "@blueprintjs/core";
 
-export default function SignIn({handleAddInvoice, handleChangeAmount, handleChangeFile, error }) {
+export default function Auction({ auction, handleAddBid }) {
   return (
     <div>
       <Header />
@@ -10,8 +10,9 @@ export default function SignIn({handleAddInvoice, handleChangeAmount, handleChan
         <main className="content">
           <div className="pt-control-group pt-vertical sign-in">
             <h1>Auction for Invoice</h1>
-            
-            <Button onClick={handleAddInvoice}  className="pt-button pt-large pt-intent-primary" iconName="pt-icon-log-in">Submit</Button>
+            <h2>Do you want to purchase invoice valued at £{ auction.amount }.</h2>
+            <a href={auction.invoice} target="_blank">Download Invoice</a>
+            <Button onClick={handleAddBid}  className="pt-button pt-large pt-intent-primary" iconName="pt-icon-log-in">Bid</Button>
           </div>
         </main>
       </div>

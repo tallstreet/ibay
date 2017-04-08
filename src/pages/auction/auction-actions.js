@@ -1,8 +1,8 @@
 import { createAction } from 'redux-actions';
 
-export const REQUEST_POST_INVOICE = 'REQUEST_POST_INVOICE';
-export const SUCCESS_POST_INVOICE = 'SUCCESS_POST_INVOICE';
-export const FAILURE_POST_INVOICE = 'FAILURE_POST_INVOICE';
-export const addInvoice = createAction(REQUEST_POST_INVOICE);
-export const successAddInvoice = createAction(SUCCESS_POST_INVOICE);
-export const failureAddInvoice = createAction(FAILURE_POST_INVOICE);
+export const REQUEST_AUCTION = 'REQUEST_AUCTION';
+export const SUCCESS_AUCTION = 'SUCCESS_AUCTION';
+export const FAILURE_AUCTION = 'FAILURE_AUCTION';
+export const loadAuction = createAction(REQUEST_AUCTION);
+export const successAuction = createAction(SUCCESS_AUCTION);
+export const failureAuction = createAction(FAILURE_AUCTION);

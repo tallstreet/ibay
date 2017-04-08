@@ -19,7 +19,8 @@ function addInvoice(file, amount) {
     () => {
       const result = {
         amount,
-        invoice: upload.snapshot.downloadURL
+        invoice: upload.snapshot.downloadURL,
+        user: window.firebase.auth().currentUser.uid
       };
       const key = window.firebase.database().ref('invoices').push(result).key;
       resolve(key);

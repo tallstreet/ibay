@@ -5,6 +5,7 @@ import {
 import { reducer as routerReducer } from 'redux-tower';
 import signin from './pages/signin/signin-reducers';
 import postInvoice from './pages/post_invoice/post_invoice-reducers';
+import auction from './pages/auction/auction-reducers';
 import Immutable from 'immutable';
 
 const initial = Immutable.fromJS({
@@ -22,5 +23,5 @@ function app(state = initial, action) {
 }
 
 export default combineReducers(
-  { signin, app, postInvoice, router: routerReducer }
+  { signin, app, postInvoice, auction, router: routerReducer }
 );

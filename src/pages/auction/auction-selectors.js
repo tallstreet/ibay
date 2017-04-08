@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
 
-export const signInSelector = createSelector(
+export const auctionSelector = createSelector(
   [
-    state => state.signin
+    state => state.auction
   ],
-  (signin) => {
+  (auction) => {
     return {
-      error: signin.get('error')
+      auction: auction.get('auction')
     };
   }
 );

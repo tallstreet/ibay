@@ -1,9 +1,10 @@
 // @flow
-import { fork, select, take, put } from 'redux-saga/effects';
+import { fork, select, take, put, call } from 'redux-saga/effects';
 import { saga, INITIAL, ERROR } from 'redux-tower';
 import { SignIn, Timeline, Loading, PostInvoice, Auction } from '../pages';
 import { SUCCESS_GET_USER } from '../actions';
 import { requestSignOut } from '../pages/signout/signout-actions';
+import { loadAuction, SUCCESS_AUCTION } from '../pages/auction/auction-actions';
 import { createBrowserHistory as createHistory } from 'redux-tower';
 import type { IOEffect } from 'redux-saga/effects';
 
@@ -23,6 +24,9 @@ const routes = {
     yield PostInvoice;
   },
   '/auction/:id': function* auction({ params: { id } }) {
+    yield put(loadAuction(id));
+    yield Loading;
+    yield take(SUCCESS_AUCTION);
     yield Auction;
   },
   '/': function* home() {
