@@ -18,26 +18,19 @@ const routes = {
   [INITIAL]: Loading,
   '/login': function* logout() {
     yield SignIn;
-    yield take(SUCCESS_GET_USER);
-    yield '/';
   },
   '/post_invoice': function* home() {
-    console.log('Check user login');
-    yield take(SUCCESS_GET_USER);
-    if (!(yield select(isLoggedIn))) {
-      yield '/login';
-    }
-    console.log('Signed In');
     yield PostInvoice;
   },
   '/': function* home() {
-    console.log('Check user login');
-    yield take(SUCCESS_GET_USER);
-    if (!(yield select(isLoggedIn))) {
-      yield '/login';
+    if (yield select(isLoggedIn)) {
+      yield PostInvoice;
+    } else {
+      yield take(SUCCESS_GET_USER);
+      if (!(yield select(isLoggedIn))) {
+        yield '/login';
+      }
     }
-    console.log('Signed In');
-    yield Loading;
   },
   '/logout': function* logout() {
     yield put(requestSignOut());

@@ -21,8 +21,8 @@ function addInvoice(file, amount) {
         amount,
         invoice: upload.snapshot.downloadURL
       };
-      window.firebase.database().ref('invoices').push(result);
-      resolve(result); 
+      const key = window.firebase.database().ref('invoices').push(result).key;
+      resolve(key);
     });
   });
 }

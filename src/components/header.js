@@ -10,7 +10,7 @@ export default function Header() {
                 <div className="pt-navbar-heading">IBay</div>
             </div>
             <div className="pt-navbar-group pt-align-right">
-                <button className="pt-button pt-minimal pt-icon-home">Home</button>
+                <Link to="/post_invoice" className="pt-button pt-minimal pt-icon-add">Add Invoice</Link>
                 <button className="pt-button pt-minimal pt-icon-document">Files</button>
                 <span className="pt-navbar-divider"></span>
                 <button className="pt-button pt-minimal pt-icon-user"></button>

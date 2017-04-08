@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { actions } from 'redux-tower';
 import * as SignInActionCreators from './signin-actions';
 import SignIn from './signin-view';
 import { signInSelector } from './signin-selectors';
@@ -9,6 +10,8 @@ import { signInSelector } from './signin-selectors';
 class SignInContainer extends Component {
   props: {
     error: string,
+    user: {},
+    push: (string) => void,
     requestSignIn: ({email: string, password: string}) => void,
   }
 
@@ -16,6 +19,12 @@ class SignInContainer extends Component {
     email: string,
     password: string
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user) {
+      this.props.push('/');
+    }
+  }
 
   handleSignIn() {
     this.props.requestSignIn({email: this.state.email, password: this.state.password});
@@ -45,6 +54,7 @@ class SignInContainer extends Component {
 export default connect(
   signInSelector,
   dispatch => bindActionCreators({
-    ...SignInActionCreators
+    ...SignInActionCreators,
+    push: actions.push
   }, dispatch)
 )(SignInContainer);

@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderLogout from '../../components/header-logout';
+import Header from '../../components/header';
 import { Button } from "@blueprintjs/core";
 
 function renderError(errorMessage: string) {
@@ -14,7 +14,7 @@ function renderError(errorMessage: string) {
 export default function SignIn({handleAddInvoice, handleChangeAmount, handleChangeFile, error }) {
   return (
     <div>
-      <HeaderLogout />
+      <Header />
       <div className="body">
         <main className="content">
           <div className="pt-control-group pt-vertical sign-in">
