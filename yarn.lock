@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@blueprintjs/core@^1.8.0":
+"@blueprintjs/core@^1.14.0":
   version "1.14.0"
   resolved "https://registry.yarnpkg.com/@blueprintjs/core/-/core-1.14.0.tgz#0b18f0aa7421b64b656389ddbe45fab12d02b700"
   dependencies:
@@ -1618,6 +1618,10 @@ dom4@^1.8:
 domain-browser@^1.1.1:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
+
+domain-specific-saga@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/domain-specific-saga/-/domain-specific-saga-0.0.1.tgz#f645b71960f5b4376a95a1751a1f8bd42403c4b8"
 
 domelementtype@1:
   version "1.3.0"
@@ -4225,7 +4229,7 @@ react-dev-utils@^0.5.2:
     sockjs-client "1.0.1"
     strip-ansi "3.0.1"
 
-react-dom@^15.4.2:
+react-dom@^15.5.3:
   version "15.5.3"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.3.tgz#2ee127ce942df55da53111ae303316e68072b5c5"
   dependencies:
@@ -4387,22 +4391,23 @@ reduce-reducers@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/reduce-reducers/-/reduce-reducers-0.1.2.tgz#fa1b4718bc5292a71ddd1e5d839c9bea9770f14b"
 
-redux-actions@^1.2.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-1.2.2.tgz#31f15ba494fe130f05c4a9f486c99cc8725f80cd"
+redux-actions@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-2.0.1.tgz#8bae89938987bd0a446c509dfdac6b64e770765a"
   dependencies:
     invariant "^2.2.1"
     lodash "^4.13.1"
     reduce-reducers "^0.1.0"
 
-redux-saga@^0.14.3:
+redux-saga@^0.14.6:
   version "0.14.6"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.14.6.tgz#bc409aa0edaa4a7234759041cc70da62f37c6f13"
 
-redux-tower@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/redux-tower/-/redux-tower-0.0.5.tgz#3dbe03634011e6ce3615343d19682aefa99d39b0"
+redux-tower@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/redux-tower/-/redux-tower-0.0.6.tgz#83c0917810cb74f2c948f28033989193634c0818"
   dependencies:
+    domain-specific-saga "^0.0.1"
     history "^4.5.0"
     querystring "^0.2.0"
     ruta3 "^2.0.1"
@@ -4547,9 +4552,9 @@ requires-port@1.0.x, requires-port@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
 
-reselect@^2.5.4:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/reselect/-/reselect-2.5.4.tgz#b7d23fdf00b83fa7ad0279546f8dbbbd765c7047"
+reselect@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.0.tgz#b2e35977f03048700028eaee3a8c0639e40e8f35"
 
 resolve-from@^1.0.0:
   version "1.0.1"

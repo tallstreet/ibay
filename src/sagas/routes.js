@@ -1,7 +1,7 @@
 // @flow
 import { fork, select, take, put } from 'redux-saga/effects';
 import { saga, INITIAL, ERROR } from 'redux-tower';
-import { SignIn, Timeline, Loading } from '../pages';
+import { SignIn, Timeline, Loading, PostInvoice } from '../pages';
 import { SUCCESS_GET_USER } from '../actions';
 import { requestSignOut } from '../pages/signout/signout-actions';
 import { createBrowserHistory as createHistory } from 'redux-tower';
@@ -20,6 +20,15 @@ const routes = {
     yield SignIn;
     yield take(SUCCESS_GET_USER);
     yield '/';
+  },
+  '/post_invoice': function* home() {
+    console.log('Check user login');
+    yield take(SUCCESS_GET_USER);
+    if (!(yield select(isLoggedIn))) {
+      yield '/login';
+    }
+    console.log('Signed In');
+    yield PostInvoice;
   },
   '/': function* home() {
     console.log('Check user login');

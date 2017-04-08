@@ -1,6 +1,7 @@
 import { fork } from 'redux-saga/effects';
 import signin from '../pages/signin/signin-sagas';
 import signout from '../pages/signout/signout-sagas';
+import postinvoice from '../pages/post_invoice/post_invoice-sagas';
 import users from './users';
 import posts from './posts';
 import routes from './routes';
@@ -13,4 +14,5 @@ export default function* rootSaga() {
   //yield fork(users);
   //yield fork(posts);
   yield fork(routes);
+  yield fork(postinvoice);
 }
