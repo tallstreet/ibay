@@ -18,7 +18,7 @@ ref.orderByChild("endDate").on("value", function(snapshot) {
     const auctions = snapshot.val();
     Object.keys(auctions).forEach((key) => {
         const auction = auctions[key];
-        if (auction.status !== 'processed' && auction.endDate < new Date().getTime()) {
+        if (!auction.status && auction.endDate < new Date().getTime()) {
             const maxBid = Object.keys(auction.bids).reduce((max, bid) => {
                 if (!max || max.bid < auction.bids[bid].bid) {
                     max = auction.bids[bid];
@@ -26,7 +26,13 @@ ref.orderByChild("endDate").on("value", function(snapshot) {
                 return max;
             });
             Promise.all([admin.auth().getUser(auction.user), admin.auth().getUser(auction.bids[maxBid].user)]).then(([seller, buyer]) => {
-                // Sign up loan shard get managed card
+                ref.child(`${key}/status`).set({
+                    status: 'processed',
+                    result: {
+                        card: '4532564821410515'
+                    }
+                });
+                // // Sign up loan shard get managed card
                 console.log(auction);
                 // Update firebase with managed card and set status to processed
                 console.log(seller);

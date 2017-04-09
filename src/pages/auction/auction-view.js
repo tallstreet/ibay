@@ -61,6 +61,14 @@ function openAuction(auction, handleAddBid, handleChangeBid, minBid) {
   )
 }
 
+function showCard(auction) {
+  return (
+    <h3>
+      Someone has purchased your invoice. You can retrieve the funds on this card: { auction.status.result.card }
+    </h3>
+  )
+}
+
 
 function closedAuction(auction, handleAddBid, handleChangeBid, minBid) {
   return (
@@ -68,6 +76,7 @@ function closedAuction(auction, handleAddBid, handleChangeBid, minBid) {
       <h1>Auction for Invoice</h1>
       <a href={auction.invoice} target="_blank">Download Invoice</a>
       { auction.bids && showBids(auction) }
+      { auction.user === window.firebase.auth().currentUser.uid && auction.status && auction.status.result && showCard(auction) }
     </div>
   )
 }
