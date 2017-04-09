@@ -256,7 +256,7 @@ function LoanSharkTopUp(amount, loansharkid, externalaccountid, managedaccountid
         request.amount.amount = amount;
         request.sourceInstrumentId.id = externalaccountid;
         request.destinationInstrumentId.id = managedaccountid;
-        TransferFromExternalToManagedAccount(request).then(function(data){
+        return TransferFromExternalToManagedAccount(request).then(function(data){
             return data;
         }, function(error) {
             console.log(error);
@@ -276,7 +276,7 @@ function LoanSharkBuysInvoice(loansharkid, externalaccountid, managedaccountid, 
 
     var managedcardid = "";
 
-    CreateManagedCard(request).then(function(data) {
+    return CreateManagedCard(request).then(function(data) {
         managedcardid = data;
 
         var request = transferparams;
@@ -284,10 +284,11 @@ function LoanSharkBuysInvoice(loansharkid, externalaccountid, managedaccountid, 
         request.sourceInstrumentId.id = managedaccountid;
         request.destinationInstrumentId.id = managedcardid;
 
-        LoadFundsOntoManagedCard(request).then(function(data) {
+        return LoadFundsOntoManagedCard(request).then(function(data) {
             console.log("Managed card loaded: data" + JSON.stringify(data));
             var transferid = data.id;
-            return data.id;
+            console.log("Managed card created with id : " + managedcardid);
+            return managedcardid;
         }, function(error) {
             console.error(error);
         });
