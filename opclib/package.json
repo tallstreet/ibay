@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "express-http-proxy": "^0.11.0",
+    "firebase-admin": "^4.2.0"
+  }
+}

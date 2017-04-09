@@ -1,5 +1,34 @@
 var OpenPaymentsCloudApplicationApi = require('open_payments_cloud_application_api');
 
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./service-account.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://ibay-a190b.firebaseio.com"
+});
+
+var database = admin.database();
+
+var ref = database.ref("invoices");
+
+// Attach an asynchronous callback to read the data at our posts reference
+ref.orderByChild("endDate").on("value", function(snapshot) {
+    const auctions = snapshot.val();
+    Object.keys(auctions).forEach((key) => {
+        const auction = auctions[key];
+        if (auction.status !== 'processed' && auction.endDate < new Date().getTime()) {
+            // Sign up loan shard get managed card
+            console.log(auction);
+            // Update firebase with managed card and set status to processed
+        }
+    })
+  console.log();
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
 var hackbot = {
     programmeId: "739345648328338",
     credentialcode: "team-17",
@@ -544,4 +573,4 @@ function LoadFundsOntoManagedCard(request = {
     });
 }
 
-TestLoanSharkBuysInvoice();
+//TestLoanSharkBuysInvoice();

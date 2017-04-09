@@ -11,6 +11,7 @@
     "@blueprintjs/datetime": "^1.12.0",
     "babel-polyfill": "^6.22.0",
     "immutable": "^3.8.1",
+    "open_payments_cloud_application_api": "^0.9.0",
     "react": "^15.5.3",
     "react-addons-css-transition-group": "^15.4.2",
     "react-dom": "^15.5.3",
