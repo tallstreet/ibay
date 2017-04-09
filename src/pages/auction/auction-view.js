@@ -37,12 +37,12 @@ function showBids(auction) {
   )
 }
 
-function showForm(auction, handleAddBid, handleChangeBid) {
+function showForm(auction, handleAddBid, handleChangeBid, minBid) {
   return (
     <div>
       <h2>Do you want to purchase invoice valued at £{ auction.amount }?</h2>
       <div className="pt-input-group pt-large">
-        <input type="number" className="pt-input" placeholder="Bid Amount" onChange={handleChangeBid} />
+        <input type="number" min={minBid} defaultValue={minBid} className="pt-input" placeholder="Bid Amount" onChange={handleChangeBid} />
       </div>
       <Button onClick={handleAddBid}  className="pt-button pt-large pt-intent-primary" iconName="pt-icon-log-in">Bid</Button>
     </div>
@@ -50,7 +50,7 @@ function showForm(auction, handleAddBid, handleChangeBid) {
 }
 
 
-export default function Auction({ auction, handleAddBid, handleChangeBid }) {
+export default function Auction({ auction, handleAddBid, handleChangeBid, minBid }) {
   return (
     <div>
       <Header />
@@ -61,7 +61,7 @@ export default function Auction({ auction, handleAddBid, handleChangeBid }) {
             Auction Ends: <TimeAgo date={new Date(auction.endDate).toUTCString()} />
             <a href={auction.invoice} target="_blank">Download Invoice</a>
             { auction.bids && showBids(auction) }
-            { auction.user !== window.firebase.auth().currentUser.uid && showForm(auction, handleAddBid, handleChangeBid) }
+            { auction.user !== window.firebase.auth().currentUser.uid && showForm(auction, handleAddBid, handleChangeBid, minBid) }
           </div>
         </main>
       </div>

@@ -11,7 +11,9 @@ class AuctionContainer extends Component {
     auction: {
       amount: string,
       invoice: string,
-      user: string
+      user: string,
+      minBid: number,
+      bids: {}
     },
     addBid: ({bid: string}) => void,
   }
@@ -30,9 +32,11 @@ class AuctionContainer extends Component {
 
 
   render() {
+    const minBid = Math.max(this.props.auction.minBid, Object.keys(this.props.auction.bids).reduce((max, bid) => this.props.auction.bids[bid].amount > max ? this.props.auction.bids[bid].amount + 1: max, 0));
     return (
       <Auction
         auction={this.props.auction}
+        minBid={minBid}
         handleChangeBid={this.handleChangeBid.bind(this)}
         handleAddBid={this.handleAddBid.bind(this)}
       />
