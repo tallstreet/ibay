@@ -34,6 +34,7 @@ var authorization = loginapi.authLogin(xCallref, xProgrammeKey, loginrequest).th
     }
 );
 
+// Ignore this
 function CreateInvoiceTrade() {
 // 1. Create LoanSharkIdentity
 // 1.a Set password for LoanSharkIdentityRootUser
@@ -48,17 +49,18 @@ function CreateInvoiceTrade() {
 
 }
 
+// TODO: Change all the fields in loansharkidentityparams every time TestLoanSharkJoin is created
 function TestLoanSharkJoin() {
     var loansharkidentityparams = {
-        "name": "uniqueshark7",
+        "name": "uniqueshark8",
         "profileId": hackbot.corporateidentity,
-        "rootCredentialCode": "uniquesharkrootcc7",
-        "supportEmail": "unique7@gmail.com",
-        "notificationEmail": "unique7@gmail.com",
+        "rootCredentialCode": "uniquesharkrootcc8",
+        "supportEmail": "unique8@gmail.com",
+        "notificationEmail": "unique8@gmail.com",
         "adminTitle": "Mr",
-        "adminName": "unique7",
-        "adminSurname": "shark7",
-        "adminEmail": "unique7@gmail.com"
+        "adminName": "unique8",
+        "adminSurname": "shark8",
+        "adminEmail": "unique8@gmail.com"
     };
     var externalaccountparams = {
         "profileId":hackbot.externalaccount,
@@ -214,11 +216,14 @@ function LoanSharkJoin(loansharkidentityparams, externalaccountparams, managedac
 function LoanSharkTopUp(amount, loansharkid, externalaccountid, managedaccountid, payintoexternalaccountparams, transferfromexternaltomanagedparams) {
     // PayInSimulator 
     // TransferFromExternalToManagedAccount
+    var simulatedpayinid = "";
     var request = payintoexternalaccountparams;
     request.amount.amount = amount;
     request.externalAccountId = externalaccountid;
     return PayIntoExternalAccount(request).then(function(data) {
+        simulatedpayinid = data.id;
         var request = transferfromexternaltomanagedparams;
+        request.sourcePayinId = simulatedpayinid;
         request.amount.amount = amount;
         request.sourceInstrumentId.id = externalaccountid;
         request.destinationInstrumentId.id = managedaccountid;
