@@ -11,7 +11,6 @@ export default function Header() {
             </div>
             <div className="pt-navbar-group pt-align-right">
                 <Link to="/post_invoice" className="pt-button pt-minimal pt-icon-add">Add Invoice</Link>
-                <button className="pt-button pt-minimal pt-icon-document">Files</button>
                 <span className="pt-navbar-divider"></span>
                 <button className="pt-button pt-minimal pt-icon-user"></button>
                 <button className="pt-button pt-minimal pt-icon-notifications"></button>
