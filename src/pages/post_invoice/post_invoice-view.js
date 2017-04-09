@@ -35,6 +35,7 @@ export default function SignIn({handleAddInvoice, handleChangeAmount, handleChan
               <input type="number" className="pt-input" placeholder="Reserve Amount" onChange={handleChangeReserve} />
             </div>
             <div className="pt-input-group pt-large">
+              Auction Closing time:
               <DateTimePicker value={date} onChange={handleDateChange} />
             </div>
             <Button onClick={handleAddInvoice}  className="pt-button pt-large pt-intent-primary" iconName="pt-icon-log-in">Submit</Button>

@@ -71,7 +71,7 @@ function* updateauction(): Generator<IOEffect,void,*> {
 
 export default function* rootSaga(): Generator<IOEffect,void,*> {
   yield fork(load);
-  //yield fork(bids);
+  yield fork(bids);
   yield fork(auctionchanges);
   yield fork(updateauction);
 }
