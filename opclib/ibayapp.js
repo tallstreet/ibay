@@ -19,9 +19,19 @@ ref.orderByChild("endDate").on("value", function(snapshot) {
     Object.keys(auctions).forEach((key) => {
         const auction = auctions[key];
         if (auction.status !== 'processed' && auction.endDate < new Date().getTime()) {
-            // Sign up loan shard get managed card
-            console.log(auction);
-            // Update firebase with managed card and set status to processed
+            const maxBid = Object.keys(auction.bids).reduce((max, bid) => {
+                if (!max || max.bid < auction.bids[bid].bid) {
+                    max = auction.bids[bid];
+                }
+                return max;
+            });
+            Promise.all([admin.auth().getUser(auction.user), admin.auth().getUser(auction.bids[maxBid].user)]).then(([seller, buyer]) => {
+                // Sign up loan shard get managed card
+                console.log(auction);
+                // Update firebase with managed card and set status to processed
+                console.log(seller);
+                console.log(buyer);
+            })
         }
     })
   console.log();
