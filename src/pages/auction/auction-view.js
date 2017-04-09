@@ -49,20 +49,39 @@ function showForm(auction, handleAddBid, handleChangeBid, minBid) {
   )
 }
 
+function openAuction(auction, handleAddBid, handleChangeBid, minBid) {
+  return (
+    <div className="pt-control-group pt-vertical sign-in">
+      <h1>Auction for Invoice</h1>
+      Auction Ends: <TimeAgo date={new Date(auction.endDate).toUTCString()} />
+      <a href={auction.invoice} target="_blank">Download Invoice</a>
+      { auction.bids && showBids(auction) }
+      { auction.user !== window.firebase.auth().currentUser.uid && showForm(auction, handleAddBid, handleChangeBid, minBid) }
+    </div>
+  )
+}
+
+
+function closedAuction(auction, handleAddBid, handleChangeBid, minBid) {
+  return (
+    <div className="pt-control-group pt-vertical sign-in">
+      <h1>Auction for Invoice</h1>
+      <a href={auction.invoice} target="_blank">Download Invoice</a>
+      { auction.bids && showBids(auction) }
+    </div>
+  )
+}
+
 
 export default function Auction({ auction, handleAddBid, handleChangeBid, minBid }) {
+  const closed = auction.endDate < new Date().getTime();
   return (
     <div>
       <Header />
       <div className="body">
         <main className="content">
-          <div className="pt-control-group pt-vertical sign-in">
-            <h1>Auction for Invoice</h1>
-            Auction Ends: <TimeAgo date={new Date(auction.endDate).toUTCString()} />
-            <a href={auction.invoice} target="_blank">Download Invoice</a>
-            { auction.bids && showBids(auction) }
-            { auction.user !== window.firebase.auth().currentUser.uid && showForm(auction, handleAddBid, handleChangeBid, minBid) }
-          </div>
+          { !closed && openAuction(auction, handleAddBid, handleChangeBid, minBid) }
+          { closed && closedAuction(auction, handleAddBid, handleChangeBid, minBid) }
         </main>
       </div>
     </div>
