@@ -12,3 +12,9 @@ export const FAILURE_ADD_BID = 'FAILURE_ADD_BID';
 export const addBid = createAction(REQUEST_ADD_BID);
 export const bidAdded = createAction(SUCCESS_ADD_BID);
 export const failureAddBid = createAction(FAILURE_ADD_BID);
+
+
+export const UPDATE_AUCTION = 'UPDATE_AUCTION';
+export const SUCCESS_UPDATE_AUCTION = 'SUCCESS_UPDATE_AUCTION';
+export const updateAuction = createAction(UPDATE_AUCTION);
+export const auctionUpdated = createAction(SUCCESS_UPDATE_AUCTION);
